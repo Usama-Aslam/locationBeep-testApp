@@ -14,10 +14,10 @@ const Routes = props => {
   return (
     <div>
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/map" component={Map} />
-        </Switch>
+        {/* <Switch>
+        </Switch> */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/map" component={Map} />
       </BrowserRouter>
     </div>
   );
