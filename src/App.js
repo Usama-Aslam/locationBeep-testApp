@@ -3,11 +3,16 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import Routes from "./routes/Router";
+import { store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
 
 function App() {
   return (
     <div className="App">
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     </div>
   );
 }
