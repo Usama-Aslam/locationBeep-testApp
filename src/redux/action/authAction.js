@@ -1,7 +1,9 @@
 import firebase from "../../config/firebase";
+import _ from "lodash";
 import { store } from "../store";
+import axios from "axios";
 
-// import { createUserData } from "../../https/authneticate";
+import { createUserData } from "../../https/authneticate";
 import { SHOW_LOADER, HIDE_LOADER, SIGN_IN } from "../types";
 
 export const signIn = async history => {
@@ -10,22 +12,30 @@ export const signIn = async history => {
   var provider = new firebase.auth.FacebookAuthProvider();
   provider.addScope("email");
 
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(function(result) {
+      .then(async function(result) {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
+        var user = _.pick(result.user, [
+          "displayName",
+          "photoURL",
+          "email",
+          "uid"
+        ]);
 
-        const data = { token, user };
+        const data = { token, ...user };
         // ...
-        console.log("result===>", user);
-        store.dispatch({ type: SIGN_IN, payload: user });
-        store.dispatch({ type: HIDE_LOADER, payload: false });
-        // createUserData(data);
+        createUserData(data)
+          .then(res => {
+            console.log("createUser ka thens=>", res);
+            store.dispatch({ type: SIGN_IN, payload: user });
+            store.dispatch({ type: HIDE_LOADER, payload: false });
+          })
+          .catch(err => console.log("createError:", err));
         resolve();
       })
 

@@ -1,13 +1,20 @@
-const createUserData = data =>
-  new Promise((resolve, reject) => {
+import axios from "axios";
+
+const createUserData = data => {
+  return new Promise((resolve, reject) => {
     axios
-      .get(``)
-      .then(response => {
-        resolve(response);
+      .post("https://us-central1-task-login-pk.cloudfunctions.net/createUser", {
+        data
+      })
+      .then(res => {
+        console.log("request ka then===>", res);
+        resolve(res);
       })
       .catch(err => {
-        reject(err.response.data);
+        console.log(err);
+        reject(err);
       });
   });
+};
 
 export { createUserData };

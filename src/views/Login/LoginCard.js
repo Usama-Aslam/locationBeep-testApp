@@ -21,7 +21,7 @@ function LoginCard() {
   const _handleSignIn = async () => {
     try {
       await signIn();
-      history.push("/map");
+      // history.push("/map");
     } catch (error) {
       console.log("error", error);
     }
