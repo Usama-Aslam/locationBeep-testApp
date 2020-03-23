@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import Login from "../screens/Login";
-import Map from "../screens/Map";
+import Map from "../screens/MapScreen";
 
 const Routes = props => {
   return (

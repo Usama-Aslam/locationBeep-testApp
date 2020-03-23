@@ -1,31 +1,37 @@
 import React, { Component, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Typography, Fab, Grid, CircularProgress } from "@material-ui/core";
 import "./LoginCard.css";
 
-import { signIn } from "../../redux/action/authAction";
+import { signIn, signOut } from "../../redux/action/authAction";
 import { store } from "../../redux/store";
 
-function LoginCard() {
+function LoginCard(props) {
+  const loading = useSelector(state => state.authReducer.loading);
+  const user = useSelector(state => state.authReducer.user);
+  const dispatch = useDispatch();
   const history = useHistory();
-  const [loading, setLoading] = useState(store.getState().authReducer.loading);
+  // const [loading, setLoading] = useState(store.getState().authReducer.loading);
 
-  useEffect(() => {
-    store.subscribe(() => {
-      setLoading(store.getState().authReducer.loading);
-    });
-    return () => {};
-  }, []);
+  // useEffect(() => {
 
-  const _handleSignIn = async () => {
+  //   store.subscribe(() => {
+  //     setLoading(store.getState().authReducer.loading);
+  //   });
+  //   return () => {};
+  // }, []);
+
+  const _handleSignIn = () => {
     try {
-      await signIn();
+      dispatch(signIn());
       // history.push("/map");
     } catch (error) {
       console.log("error", error);
     }
   };
+  console.log(user);
 
   return (
     <div className="loginCardDiv">
