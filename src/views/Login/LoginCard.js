@@ -9,24 +9,16 @@ import { signIn, signOut } from "../../redux/action/authAction";
 import { store } from "../../redux/store";
 
 function LoginCard(props) {
-  const loading = useSelector(state => state.authReducer.loading);
-  const user = useSelector(state => state.authReducer.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [loading, setLoading] = useState(store.getState().authReducer.loading);
 
-  // useEffect(() => {
+  const loading = useSelector(state => state.authReducer.loading);
+  const user = useSelector(state => state.authReducer.user);
 
-  //   store.subscribe(() => {
-  //     setLoading(store.getState().authReducer.loading);
-  //   });
-  //   return () => {};
-  // }, []);
-
-  const _handleSignIn = () => {
+  const _handleSignIn = async () => {
     try {
       dispatch(signIn());
-      // history.push("/map");
+      history.push("/map");
     } catch (error) {
       console.log("error", error);
     }
