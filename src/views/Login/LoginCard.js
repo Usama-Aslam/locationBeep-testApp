@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Typography, Fab, Grid, CircularProgress } from "@material-ui/core";
 import "./LoginCard.css";
 
-import { signIn, signOut } from "../../redux/action/authAction";
-import { store } from "../../redux/store";
+import { signIn } from "../../redux/action/authAction";
 
 function LoginCard(props) {
   const dispatch = useDispatch();

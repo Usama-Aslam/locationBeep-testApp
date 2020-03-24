@@ -13,3 +13,12 @@
   top: 6px;
   left: 5px;
 }
+.markerInfo {
+  position: absolute;
+  top:-30px;
+  left:-20px;
+  font-size: 10px;
+  color: black;
+  width: 100px;
+  background-color: white;
+}

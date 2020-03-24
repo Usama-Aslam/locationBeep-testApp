@@ -12,15 +12,22 @@ export const _getCurrentLocationAsync = user => {
         maximumAge: 0
       };
       const success = pos => {
-        firebase
-          .database()
-          .ref(`/location/${user.uid}`)
-          .set({
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude
-          });
-        console.log("location==>", pos.coords);
-        dispatch({ type: GET_LOCATION, payload: pos.coords });
+        if (user.uid)
+          firebase
+            .database()
+            .ref(`/location/${user.uid}`)
+            .set({
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
+            })
+            .then(() => {
+              const loc = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+              };
+              // console.log("location==>", pos.coords);
+              dispatch({ type: GET_LOCATION, payload: loc });
+            });
       };
       const error = err => {
         console.log("location error=>", err);
@@ -30,5 +37,11 @@ export const _getCurrentLocationAsync = user => {
     } else {
       console.log("location not allowed");
     }
+  };
+};
+
+export const _cleanCurrentLocationAsync = () => {
+  return dispatch => {
+    navigator.geolocation.clearWatch(id);
   };
 };
