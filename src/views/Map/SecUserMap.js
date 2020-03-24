@@ -14,11 +14,9 @@ const UserMap = () => {
   });
   const zoom = 10;
 
-  useEffect(async () => {
-    await dispatch(_getCurrentLocationAsync(user));
-    return () => {
-      navigator.geolocation.clearWatch();
-    };
+  useEffect(() => {
+    dispatch(_getCurrentLocationAsync(user));
+    return () => {};
   });
 
   return (

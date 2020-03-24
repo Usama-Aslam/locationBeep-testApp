@@ -8,18 +8,16 @@ const INITIAL_STATE = {
 const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SHOW_LOADER:
-      console.log("inside reducer loader");
+      console.log("inside reducer show_loader");
       return { ...state, loading: true };
 
     case HIDE_LOADER:
-      console.log("inside reducer");
+      console.log("inside reducer hide_loader");
       return { ...state, loading: false };
 
     case SIGN_IN:
       return { ...state, user: action.payload };
 
-    case "NUMBER":
-      return { ...state, number: action.payload };
     default:
       return state;
   }

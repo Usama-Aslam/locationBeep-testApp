@@ -15,14 +15,14 @@ function LoginCard(props) {
   const loading = useSelector(state => state.authReducer.loading);
   const user = useSelector(state => state.authReducer.user);
 
-  const _handleSignIn = async () => {
+  const _handleSignIn = () => {
     try {
-      dispatch(signIn());
-      history.push("/map");
+      dispatch(signIn(history));
     } catch (error) {
       console.log("error", error);
     }
   };
+
   console.log(user);
 
   return (
