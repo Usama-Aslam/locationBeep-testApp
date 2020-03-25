@@ -4,7 +4,7 @@ import "./SecAvatar.css";
 
 const SecAvatar = props => {
   return (
-    <div>
+    <div className="mainMarker">
       <p className="markerInfo">{props.text}</p>
       <div className="markerDiv">
         <img
