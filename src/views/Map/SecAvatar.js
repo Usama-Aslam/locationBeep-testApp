@@ -3,7 +3,6 @@ import MarkerImg from "../../asset/marker.png";
 import "./SecAvatar.css";
 
 const SecAvatar = props => {
-  console.log("props==>", props);
   return (
     <div>
       <p className="markerInfo">{props.text}</p>

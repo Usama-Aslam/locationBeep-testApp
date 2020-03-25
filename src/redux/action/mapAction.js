@@ -1,6 +1,6 @@
 import firebase from "../../config/firebase";
 
-import { GET_LOCATION } from "../types";
+import { GET_LOCATION, USER_LOCATION } from "../types";
 
 var id;
 export const _getCurrentLocationAsync = user => {
@@ -44,4 +44,23 @@ export const _cleanCurrentLocationAsync = () => {
   return dispatch => {
     navigator.geolocation.clearWatch(id);
   };
+};
+
+var dbRef = firebase.database().ref("/location");
+
+export const _getUserLocationAsync = () => {
+  return dispatch => {
+    dbRef.on("value", snapshot => {
+      const data = [];
+      snapshot.forEach(item => {
+        data.push({ value: item.val(), key: item.key });
+      });
+      console.log("location");
+      dispatch({ type: USER_LOCATION, payload: data });
+    });
+  };
+};
+
+export const _cleanUserLocation = () => {
+  return dispatch => dbRef.off();
 };
