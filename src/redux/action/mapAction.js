@@ -18,7 +18,9 @@ export const _getCurrentLocationAsync = user => {
             .ref(`/location/${user.uid}`)
             .set({
               lat: pos.coords.latitude,
-              lng: pos.coords.longitude
+              lng: pos.coords.longitude,
+              displayName: user.displayName,
+              photoURL: user.photoURL
             })
             .then(() => {
               const loc = {

@@ -42,7 +42,11 @@ const UserMap = () => {
           defaultCenter={coords ? coords : null}
           defaultZoom={zoom}
         >
-          <MarkerAvatar {...coords} text={user.displayName} />
+          {/* <MarkerAvatar {...coords} displayName={user.displayName} /> */}
+          {userCoords &&
+            userCoords.map(({ value }, index) => {
+              return <MarkerAvatar {...value} />;
+            })}
         </GoogleMapReact>
       )}
     </div>

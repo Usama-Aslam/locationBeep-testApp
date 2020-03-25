@@ -1,16 +1,14 @@
 import React from "react";
-import MarkerImg from "../../asset/marker.png";
 import "./SecAvatar.css";
 
 const SecAvatar = props => {
+  console.log("propsssss", props);
+  const { displayName, photoURL } = props;
   return (
     <div className="mainMarker">
-      <p className="markerInfo">{props.text}</p>
+      <p className="markerInfo">{displayName}</p>
       <div className="markerDiv">
-        <img
-          src="https://graph.facebook.com/1303055116565692/picture?height=100"
-          className="avatar"
-        />
+        <img src={`${photoURL}?height=100`} className="avatar" />
       </div>
     </div>
   );
