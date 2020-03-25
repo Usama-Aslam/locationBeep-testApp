@@ -14,7 +14,7 @@
     }
   ],
   "orientation": "portrait",
-  "start_url": "/map?utm_source=homescreen",
+  "start_url": "/?utm_source=homescreen",
   "background_color": "#222",
   "theme_color": "#222",
   "display": "standalone"
