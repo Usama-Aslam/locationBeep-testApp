@@ -32,7 +32,7 @@ export const signIn = history => {
             // console.log("createUser ka thens=>", res);
             dispatch({ type: SIGN_IN, payload: user });
             dispatch({ type: HIDE_LOADER, payload: false });
-            history.push("/map");
+            history.replace("/map");
           })
           .catch(err => console.log("API Error:", err));
       })
